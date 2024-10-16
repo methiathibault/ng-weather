@@ -20,7 +20,7 @@ export class WeatherService {
     }
 
     getWeatherFromId(city_id: string) {
-        return this.httpclient.get(`https://api.openweathermap.org/data/2.5/weather?id=${city_id}&appid=${environment.apiKey}&units=metric`);
+        return this.httpclient.get(`https://api.openweathermap.org/data/2.5/weather?id=${city_id}&lang=fr&appid=${environment.apiKey}&units=metric`);
     }
 
     getIdFromCityName(city_name: string): number | null {
