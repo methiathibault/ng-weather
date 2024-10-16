@@ -33,9 +33,9 @@ export class WeatherService {
         let id = this.getIdFromCityName(city_name);
         if (id) {
             return this.getWeatherFromId(id.toString());
+
         }
         console.error(`City not found for ${city_name}`);
         return null;
-    }
-    
+    } 
 }
