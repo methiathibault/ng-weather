@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from "@angular/core";
-import { Router, RouterModule } from "@angular/router";
 import { City } from "../city";
 import { CITYLIST } from "../city-mock";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -10,7 +9,7 @@ import { CommonModule } from "@angular/common";
 @Component({
     standalone: true,
     selector: 'app-weather',
-    imports: [RouterModule, ReactiveFormsModule, CommonModule],
+    imports: [ReactiveFormsModule, CommonModule],
     templateUrl: './weather.component.html',
 })
 
@@ -20,7 +19,6 @@ export class WeatherComponent implements OnInit {
     cityForm: FormGroup;
     errorMessage: string | undefined;
 
-    router = inject(Router);
     formBuilder = inject(FormBuilder);
     service = inject(WeatherService);
 

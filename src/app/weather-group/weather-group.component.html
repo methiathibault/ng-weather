@@ -3,11 +3,14 @@
     <div class="grid grid-cols-4 gap-4  p-4  ">
         @for (data of listeData; track data){
             <div (click)="weatherService.goToWeatherDetail(data)" class=" bg-blue-300 p-4 rounded-lg border-4 border-blue-300 hover:border-blue-500">
-                <p class="text-xl font-bold mb-4">{{data.name}}</p>
-                <p> Temperature : {{data.main.temp}}°C</p>
-                <p> Humidité : {{data.main.humidity}}%</p>
-                <p> Vitesse du vent : {{data.wind.speed}} m/s</p>
-                <p> Climat : {{data.weather[0].main}}</p>
+                <div class="mb-4">
+                    <p class="text-xl font-bold mb-4">{{data.name}}</p>
+                    <p> Temperature : {{data.main.temp}}°C</p>
+                    <p> Humidité : {{data.main.humidity}}%</p>
+                    <p> Vitesse du vent : {{data.wind.speed}} m/s</p>
+                    <p> Climat : {{data.weather[0].main}}</p>
+                </div>
+                <button (click)="weatherService.addToFavoriteCities($event, data)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter aux favoris</button>
             </div>
         }
     </div>

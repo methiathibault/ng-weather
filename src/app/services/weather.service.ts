@@ -48,6 +48,31 @@ export class WeatherService {
     return of(null);
     }
 
+    getFavoriteCities(): API[] {
+        return JSON.parse(localStorage.getItem('favorites') || '[]');
+    }
+
+    addToFavoriteCities(event: Event, city: API): boolean {
+        event.stopPropagation()
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        for (const favorite of favorites) {
+            if (favorite.id === city.id) {
+                alert('City is already in favorites');
+                return false;
+            }
+        }
+        favorites.push(city);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert('City has been successfully added')
+        return true
+    }
+
+    removeFromFavoriteCities(city: API): void {
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const newFavorites = favorites.filter((favorite: API) => favorite.id !== city.id);
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    }
+
     goToWeatherDetail(city: API): void {
         this.router.navigate(['/weather', city.name]);
     }

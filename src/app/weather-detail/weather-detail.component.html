@@ -23,11 +23,13 @@
                     <p class="text-lg">Niveau de la mer: {{ city.main.sea_level }} hPa</p>
                     <p class="text-lg">Niveau du sol: {{ city.main.grnd_level }} hPa</p>
                 </div>
-                <div class="mb-4">
+                <div class="mb-8">
                     <p class="text-lg">Longitude: {{ city.coord.lon }}</p>
                     <p class="text-lg">Latitude: {{ city.coord.lat }}</p>
                 </div>
             </div>
+            <button type="button" (click)="service.goToWeather()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Retourner à la recherche</button>
+            <button type="button" (click)="service.addToFavoriteCities($event, city)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter aux favoris</button>
         </div>
     } @else {
         <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
