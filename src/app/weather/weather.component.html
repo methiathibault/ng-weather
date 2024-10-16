@@ -2,8 +2,10 @@
     <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
         <div class="flex flex-col items-center space-y-4">
             @if (city) {
-                <div class="bg-blue-300 p-4 rounded-lg shadow-md cursor-pointer" (click)="service.goToWeatherDetail(city)">
-                    <h2 class="text-2xl font-bold mb-2">{{city.name}}</h2>
+                <div class="bg-blue-300 border-4 border-blue-300 hover:border-blue-500 p-12 rounded-lg shadow-md cursor-pointer" (click)="service.goToWeatherDetail(city)">
+                    <img src="http://openweathermap.org/img/w/{{city.weather[0].icon}}.png" class="w-16 h-16">
+                    <h2 class="text-2xl font-bold">{{city.name}}</h2>
+                    <h3 class="text-lg mb-4">{{city.sys.country}}</h3>
                     <p class="text-lg">Température: {{ city.main.temp }}°C</p>
                     <p class="text-lg">Humidité: {{ city.main.humidity }}%</p>
                     <p class="text-lg">Vitesse du vent: {{ city.wind.speed }}m/s</p>
@@ -18,8 +20,11 @@
         </div>
         <div class="mt-4">
             <form [formGroup]="cityForm" (ngSubmit)="onSubmit()" class="space-y-4">
-                <label for="city" class="block text-lg font-medium">City</label>
-                <input type="text" id="city" formControlName="city" class="w-full p-2 border border-gray-300 rounded-md">
+                <label for="city" class="block text-2xl font-medium">City: </label>
+                @if (errorMessage) {
+                    <p class="text-red-500">{{ errorMessage }}</p>
+                }
+                <input type="text" id="city" formControlName="city" [ngClass]="{'border-red-500': errorMessage, 'border-gray-300': !errorMessage}" class="w-full p-2 border border-gray-300 rounded-md">
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Get Weather</button>
             </form>
         </div>

@@ -1,13 +1,37 @@
-@if (city){
-    <div>
-        {{city.name}}
-        {{city.main.temp}}
-        {{city.main.humidity}}
-        {{city.weather[0].main}}
-        {{city.weather[0].description}}
-    </div>
-} @else {
-    <div>
-        <h1>No city found</h1>
-    </div>
-}
+<div class="bg-blue-100 min-h-screen flex items-center justify-center p-4">
+    @if (city) {
+        <div class="bg-blue-300 shadow-md rounded-lg p-8 max-w-2xl w-full">
+            <div>
+                <h1 class="text-4xl font-bold mb-4">{{ city.name }}</h1>
+                <div class="mb-4">
+                    <p class="text-lg">Pays: {{ city.sys.country }}</p>
+                    <p class="text-lg">Fuseau horaire: UTC+{{ city.timezone / 3600 }}</p>
+                </div>
+                <div class="mb-4">
+                    <img src="http://openweathermap.org/img/w/{{city.weather[0].icon}}.png" class="w-16 h-16"> <!-- Adjusted size -->
+                    <p class="text-lg">Temps: {{ city.weather[0].main }}</p>
+                    <p class="text-lg">Description: {{ city.weather[0].description }}</p>
+                    <p class="text-lg">Visibilité: {{ city.visibility }}m</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-lg">Température: {{ city.main.temp }}°C</p>
+                    <p class="text-lg">Humidité: {{ city.main.humidity }}%</p>
+                    <p class="text-lg">Ressenti: {{ city.main.feels_like }}°C</p>
+                    <p class="text-lg">Température minimale: {{ city.main.temp_min }}°C</p>
+                    <p class="text-lg">Température maximale: {{ city.main.temp_max }}°C</p>
+                    <p class="text-lg">Pression: {{ city.main.pressure }} hPa</p>
+                    <p class="text-lg">Niveau de la mer: {{ city.main.sea_level }} hPa</p>
+                    <p class="text-lg">Niveau du sol: {{ city.main.grnd_level }} hPa</p>
+                </div>
+                <div class="mb-4">
+                    <p class="text-lg">Longitude: {{ city.coord.lon }}</p>
+                    <p class="text-lg">Latitude: {{ city.coord.lat }}</p>
+                </div>
+            </div>
+        </div>
+    } @else {
+        <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
+            <h1 class="text-3xl font-bold text-red-500">Search for another city,<br> we couldn't find this one</h1>
+        </div>
+    }
+</div>

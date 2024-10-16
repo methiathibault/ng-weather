@@ -23,7 +23,8 @@ export class WeatherDetailComponent implements OnInit {
             this.service.getWeatherFromCityName(city_name).subscribe((data: API) => {
                 console.log(data);
                 this.city = data;
-            }, (error: any) => { console.error(error); });
+            }, (error: any) => 
+                { console.error(error); });
         }
     }
 }
