@@ -2,6 +2,9 @@ import { Component, OnInit , inject } from "@angular/core";
 import { CITYLIST } from "../city-mock";
 import { City } from "../city";
 import { HttpClient } from '@angular/common/http';
+import { WeatherService } from "../services/weather.service";
+import { environment } from "../../environments/environment";
+import { API } from "../api_response";
 
 
 @Component({
@@ -11,36 +14,36 @@ import { HttpClient } from '@angular/common/http';
 
 export class WeatherGroupComponent implements OnInit {
     constructor() {}
-    id: number= 3
+    id: number= 0
     cityList: City[] = CITYLIST
     actualCityList: City[] = []
     data:any
+    listeData: API[] = []
 
     private http = inject(HttpClient);
+    private weatherService = inject(WeatherService);
 
     ngOnInit() {
-        console.log(CITYLIST);
         this.getWeather(this.id)
-        
     }
 
 
     getWeather(id: number) {
         this.id = id
-        for (let i = this.id*50; i < (this.id*50)+50; i++) {
-            this.actualCityList.push(this.cityList[i]);
-            this.apiCall(i)
+        for (let i = this.id*5; i < (this.id*5)+5; i++) {
+            
+            console.log(this.cityList[i].name)
+           this.getWeatherAPI(this.cityList[i].name)
         }
     }
 
-    apiCall(id: number) {
-        console.log("apiCall");
-        this.http.get("https://jsonplaceholder.typicode.com/todos/" + id)
-            .subscribe((data:any )=> {
-                this.data = data
-                console.table(data);
-            });
-        console.log(this.data);
+    getWeatherAPI(cityname: string)  {
+        this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${environment.apiKey}`)
+            .subscribe((data: Object) => {
+                const apiData = data as API
+                
+                console.table(apiData)
+                this.listeData.push(apiData)
+            })
     }
-
 }
