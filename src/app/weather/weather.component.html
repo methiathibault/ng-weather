@@ -1,6 +1,22 @@
-<div>
+@if (this.city) {
     <div>
-        <h2>{{this.city.name}}</h2>
-        <p>{{this.city.main.feels_like}}</p>
+        <div (click)="service.goToWeatherDetail(city)">
+            <h2>{{city.name}}</h2>
+            <p>{{city.main.temp}}</p>
+            <p>{{city.main.humidity}}</p>
+            <p>{{city.weather[0].main}}</p>
+        </div>
+        <div>
+            <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+                <label for="city">City</label>
+                <input type="text" id="city" formControlName="city">
+                <button type="submit">Get Weather</button>
+            </form>
+        </div>
     </div>
-</div>
+} @else {
+    <div>
+        <h2>Weather</h2>
+        <p>Search for a city to get the weather</p>
+    </div>
+}

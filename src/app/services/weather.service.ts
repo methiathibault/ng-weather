@@ -3,6 +3,8 @@ import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { City } from "../city";
 import { CITYLIST } from "../city-mock";
+import { Router } from "@angular/router";
+import { API } from "../api_response";
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +12,8 @@ import { CITYLIST } from "../city-mock";
 
 export class WeatherService {
     httpclient = inject(HttpClient);
+    router= inject(Router);
+
     cityList: City[]
     constructor() {
         this.cityList = CITYLIST
@@ -37,5 +41,18 @@ export class WeatherService {
         }
         console.error(`City not found for ${city_name}`);
         return null;
-    } 
+    }
+
+    goToWeatherDetail(city: API) {
+        this.router.navigate(['/weather', city.name]);
+    }
+
+    goToWeatherGroup() {
+        this.router.navigate(['/weather-group']);
+    }
+
+    goToWeather() {
+        this.router.navigate(['/weather']);
+    }
+
 }
