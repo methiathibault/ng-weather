@@ -21,7 +21,7 @@ export class WeatherGroupComponent implements OnInit {
     ngOnInit() {
         console.log(CITYLIST);
         this.getWeather(this.id)
-        this.apiCall()
+        
     }
 
 
@@ -29,12 +29,13 @@ export class WeatherGroupComponent implements OnInit {
         this.id = id
         for (let i = this.id*50; i < (this.id*50)+50; i++) {
             this.actualCityList.push(this.cityList[i]);
+            this.apiCall(i)
         }
     }
 
-    apiCall() {
+    apiCall(id: number) {
         console.log("apiCall");
-        this.http.get("https://jsonplaceholder.typicode.com/todos/1")
+        this.http.get("https://jsonplaceholder.typicode.com/todos/" + id)
             .subscribe((data:any )=> {
                 this.data = data
                 console.table(data);
