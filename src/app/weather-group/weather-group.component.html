@@ -1,12 +1,22 @@
-c'est moi héhé
 
-
-
-@for (data of listeData; track data){
-    <br>==========================================<br>
-    <p>{{data.name}}</p>
-    <p>{{data.base}}</p>
-    <p>{{data.visibility}}</p>
-    <p>{{data.dt}}</p>
-    <br>==========================================<br>
-}
+<div class=" min-h-screen bg-blue-100 ">
+    <div class="grid grid-cols-4 gap-4  p-4  ">
+        @for (data of listeData; track data){
+            <div (click)="weatherService.goToWeatherDetail(data)" class=" bg-blue-300 p-4 rounded-lg border-4 border-blue-300 hover:border-blue-500">
+                <p class="text-xl font-bold mb-4">{{data.name}}</p>
+                <p> Temperature : {{data.main.temp}}°C</p>
+                <p> Humidité : {{data.main.humidity}}%</p>
+                <p> Vitesse du vent : {{data.wind.speed}} m/s</p>
+                <p> Climat : {{data.weather[0].main}}</p>
+            </div>
+        }
+    </div>
+    <div class="grid grid-cols-9 ">
+        @if(id>0){
+            <button (click)="getWeather(id - 1)" class="bg-blue-200 hover:bg-blue-300 rounded-l-lg  max-h-8 col-start-4">{{id - 1}}</button>
+        }
+        
+        <button class="bg-blue-200 border-blue-300 border-4  font-bold hover:bg-blue-300 max-h-8  col-start-5">{{id}}</button>
+        <button (click)="getWeather(id + 1)"  class="bg-blue-200 hover:bg-blue-300 rounded-r-lg max-h-8  col-start-6">{{id + 1}}</button>
+    </div>
+</div>

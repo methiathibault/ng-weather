@@ -21,7 +21,7 @@ export class WeatherGroupComponent implements OnInit {
     listeData: API[] = []
 
     private http = inject(HttpClient);
-    private weatherService = inject(WeatherService);
+    weatherService = inject(WeatherService);
 
     ngOnInit() {
         this.getWeather(this.id)
@@ -29,6 +29,7 @@ export class WeatherGroupComponent implements OnInit {
 
 
     getWeather(id: number) {
+        this.listeData = []
         this.id = id
         for (let i = this.id*5; i < (this.id*5)+5; i++) {
             
@@ -38,11 +39,9 @@ export class WeatherGroupComponent implements OnInit {
     }
 
     getWeatherAPI(cityname: string)  {
-        this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${environment.apiKey}`)
+        this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityname}&lang=fr&appid=${environment.apiKey}&units=metric`)
             .subscribe((data: Object) => {
                 const apiData = data as API
-                
-                console.table(apiData)
                 this.listeData.push(apiData)
             })
     }

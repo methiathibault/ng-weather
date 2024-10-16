@@ -1,5 +1,6 @@
 @if (this.city) {
     <div>
+
         <div (click)="service.goToWeatherDetail(city)">
             <h2>{{city.name}}</h2>
             <p>{{city.main.temp}}</p>
