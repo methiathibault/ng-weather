@@ -3,7 +3,8 @@ import { Router, RouterModule } from "@angular/router";
 import { City } from "../city";
 import { CITYLIST } from "../city-mock";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
+import { WeatherService } from "../services/weather.service";
+import { API } from "../api_response";
 
 @Component({
     standalone: true,
@@ -13,13 +14,13 @@ import { HttpClient } from "@angular/common/http";
 })
 
 export class WeatherComponent implements OnInit {
-    city: City = {} as City;
+    city: API = {} as API;
     cityList: City[] = [];
     cityForm: FormGroup = {} as FormGroup;
 
     router = inject(Router);
     formBuilder = inject(FormBuilder);
-    http = inject(HttpClient);
+    service = inject(WeatherService);
 
     constructor() {}
 
@@ -28,7 +29,14 @@ export class WeatherComponent implements OnInit {
         this.cityForm = this.formBuilder.group({
             city: ['', Validators.required],
         });
+        this.getWeather('Paris');
     }
 
+    getWeather(city_name: string) {
+        this.service.getWeatherFromCityName(city_name).subscribe((data: API) => {
+            console.log(data);
+            this.city = data;
+        }, (error: any) => { console.error(error); });
+    }
 
 }
