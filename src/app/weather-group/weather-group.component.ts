@@ -21,7 +21,7 @@ export class WeatherGroupComponent implements OnInit {
     listeData: API[] = []
 
     private http = inject(HttpClient);
-    private weatherService = inject(WeatherService);
+    weatherService = inject(WeatherService);
 
     ngOnInit() {
         this.getWeather(this.id)
