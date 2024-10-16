@@ -5,5 +5,5 @@ import { WeatherComponent } from './weather/weather.component';
 export const routes: Routes = [
     {path: 'weather-group', component: WeatherGroupComponent},
     {path: 'weather', component: WeatherComponent},
-    {path: '', redirectTo: 'weather', pathMatch: 'full'},
+    {path: '', redirectTo: 'weather-group', pathMatch: 'full'},
 ];
