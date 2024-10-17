@@ -5,6 +5,7 @@
             <div (click)="weatherService.goToWeatherDetail(data)" class=" bg-blue-300 p-4 rounded-lg border-4 border-blue-300 hover:border-blue-500">
                 <div class="mb-4">
                     <p class="text-xl font-bold mb-4">{{data.name}}</p>
+                    <img src="http://openweathermap.org/img/w/{{data.weather[0].icon}}.png" class="w-16 h-16">
                     <p> Temperature : {{data.main.temp}}°C</p>
                     <p> Humidité : {{data.main.humidity}}%</p>
                     <p> Vitesse du vent : {{data.wind.speed}} m/s</p>
@@ -15,11 +16,40 @@
         }
     </div>
     <div class="grid grid-cols-9 ">
-        @if(id>0){
+       
+
+        @if(id >= max_id){
+           
+            <button (click)="getWeather(0)" class="bg-blue-200 hover:bg-blue-300 rounded-l-lg  max-h-8 col-start-4">0</button>
+            <button (click)="getWeather(id - 1)" class="bg-blue-200 hover:bg-blue-300   max-h-8 col-start-5">{{id - 1}}</button>
+            <button class="bg-blue-200 border-blue-300 border-4  font-bold hover:bg-blue-300 max-h-8 rounded-r-lg col-start-6">{{id}}</button>
+        }@else if (id == (max_id-1)) {
+            <button (click)="getWeather(0)" class="bg-blue-200 hover:bg-blue-300 rounded-l-lg  max-h-8 col-start-4">0</button>
+            <button (click)="getWeather(id - 1)" class="bg-blue-200 hover:bg-blue-300   max-h-8 col-start-5">{{id - 1}}</button>
+            <button class="bg-blue-200 border-blue-300 border-4  font-bold hover:bg-blue-300 max-h-8  col-start-6">{{id}}</button>
+            <button (click)="getWeather(id + 1)" class="bg-blue-200 hover:bg-blue-300 rounded-r-lg  max-h-8 col-start-7">{{id+1}}</button>
+
+        }@else if (id>1 && id <= (max_id -1)) {
+            
+            <button (click)="getWeather(0)" class="bg-blue-200 hover:bg-blue-300 rounded-l-lg  max-h-8 col-start-3">0</button>
+            <button (click)="getWeather(id - 1)" class="bg-blue-200 hover:bg-blue-300 max-h-8 col-start-4">{{id - 1}}</button>
+            <button class="bg-blue-200 border-blue-300 border-4  font-bold hover:bg-blue-300 max-h-8  col-start-5">{{id}}</button>
+            <button (click)="getWeather(id + 1)"  class="bg-blue-200 hover:bg-blue-300 max-h-8  col-start-6">{{id + 1}}</button>
+            <button (click)="getWeather(max_id)"  class="bg-blue-200 hover:bg-blue-300 rounded-r-lg max-h-8  col-start-7">{{max_id}}</button>
+        }@else if (id>0) {
+           
             <button (click)="getWeather(id - 1)" class="bg-blue-200 hover:bg-blue-300 rounded-l-lg  max-h-8 col-start-4">{{id - 1}}</button>
+            <button class="bg-blue-200 border-blue-300 border-4  font-bold hover:bg-blue-300 max-h-8  col-start-5">{{id}}</button>
+            <button (click)="getWeather(id + 1)"  class="bg-blue-200 hover:bg-blue-300 max-h-8  col-start-6">{{id + 1}}</button>
+            <button (click)="getWeather(max_id)"  class="bg-blue-200 hover:bg-blue-300 rounded-r-lg max-h-8  col-start-7">{{max_id}}</button>
+        }@else {
+            
+            <button class="bg-blue-200 border-blue-300 border-4  font-bold hover:bg-blue-300 max-h-8 rounded-l-lg col-start-4">{{id}}</button>
+            <button (click)="getWeather(id + 1)"  class="bg-blue-200 hover:bg-blue-300 max-h-8  col-start-5">{{id + 1}}</button>
+            <button (click)="getWeather(max_id)"  class="bg-blue-200 hover:bg-blue-300 rounded-r-lg max-h-8  col-start-6">{{max_id}}</button>
         }
+
         
-        <button class="bg-blue-200 border-blue-300 border-4  font-bold hover:bg-blue-300 max-h-8  col-start-5">{{id}}</button>
-        <button (click)="getWeather(id + 1)"  class="bg-blue-200 hover:bg-blue-300 rounded-r-lg max-h-8  col-start-6">{{id + 1}}</button>
+       
     </div>
 </div>
