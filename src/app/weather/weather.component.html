@@ -12,20 +12,19 @@
                     <p class="text-lg">Temps: {{ city.weather[0].main }}</p>
                 </div>
             } @else {
-                <h1 class="text-3xl font-bold">
-                    Search for another city,<br>
-                    we couldn't find this one
-                </h1>
+                <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
+                    <h1 class="text-3xl font-bold text-red-500">Recherchez une ville pour obtenir la météo</h1>
+                </div> 
             }
         </div>
         <div class="mt-4">
             <form [formGroup]="cityForm" (ngSubmit)="onSubmit()" class="space-y-4">
-                <label for="city" class="block text-2xl font-medium">City: </label>
+                <label for="city" class="block text-2xl font-medium">Ville: </label>
                 @if (errorMessage) {
                     <p class="text-red-500">{{ errorMessage }}</p>
                 }
                 <input type="text" id="city" formControlName="city" [ngClass]="{'border-red-500': errorMessage, 'border-gray-300': !errorMessage}" class="w-full p-2 border border-gray-300 rounded-md">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Get Weather</button>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Rechercher</button>
             </form>
         </div>
     </div>
