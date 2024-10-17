@@ -31,6 +31,9 @@ export class WeatherComponent implements OnInit {
 
     ngOnInit(): void {
         this.getWeather('Paris');
+        this.service.getDailyWeatherFromCityName('Paris').subscribe((data: API) => {
+            console.log(data);
+        });
     }
 
     getWeather(city_name: string): void {

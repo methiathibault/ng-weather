@@ -25,6 +25,10 @@ export class WeatherService {
         return this.httpclient.get(`https://api.openweathermap.org/data/2.5/weather?id=${city_id}&lang=fr&appid=${environment.apiKey}&units=metric`);
     }
 
+    getDailyWeatherFromId(city_id: string): Observable<any> {
+        return this.httpclient.get(`https://api.openweathermap.org/data/2.5/forecast?id=${city_id}&lang=fr&appid=${environment.apiKey}&units=metric`);
+    }
+
     getIdFromCityName(city_name: string): number | undefined {
         const city = this.cityList.find(city => city.name.toLowerCase() === city_name.toLowerCase());
         if (city) {
@@ -46,6 +50,20 @@ export class WeatherService {
     }
     console.error(`City not found for ${city_name}`);
     return of(null);
+    }
+
+    getDailyWeatherFromCityName(city_name: string): Observable<any> {
+        const id = this.getIdFromCityName(city_name);
+        if (id) {
+            return this.getDailyWeatherFromId(id.toString()).pipe(
+                catchError((error: any) => {
+                    console.error(error);
+                    return of(null);
+                })
+            );
+        }
+        console.error(`City not found for ${city_name}`);
+        return of(null);
     }
 
     getFavoriteCities(): API[] {
@@ -85,7 +103,13 @@ export class WeatherService {
         this.router.navigate(['/weather']);
     }
 
-    goToPageNotFound(): void {
-        this.router.navigate(['**']);
+    goToFavorite(): void {
+        this.router.navigate(['/favorite']);
     }
+
+    goToWeatherPrevision(event: Event, city: API): void {
+        event.stopPropagation();
+        this.router.navigate(['/weather', city.name, 'previsions']);
+    }
+
 }

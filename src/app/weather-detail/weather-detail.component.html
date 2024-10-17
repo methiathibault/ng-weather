@@ -31,6 +31,7 @@
             <div class="flex justify-between">
                 <button type="button" (click)="service.goToWeather()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Retourner à la recherche</button>
                 <button type="button" (click)="service.addToFavoriteCities($event, city)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter aux favoris</button>
+                <button type="button" (click)="service.goToWeatherPrevision($event, city)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Prévisions</button>
             </div>
         </div>
     } @else {

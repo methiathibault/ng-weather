@@ -11,7 +11,10 @@
                     <p> Vitesse du vent : {{data.wind.speed}} m/s</p>
                     <p> Climat : {{data.weather[0].main}}</p>
                 </div>
-                <button (click)="weatherService.addToFavoriteCities($event, data)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter aux favoris</button>
+                <div class="flex justify-between">
+                    <button (click)="weatherService.addToFavoriteCities($event, data)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter aux favoris</button>
+                    <button (click)="weatherService.goToWeatherPrevision($event, data)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Prévisions</button>
+                </div>
             </div>
         }
     </div>

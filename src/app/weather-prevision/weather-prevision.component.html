@@ -1,0 +1,26 @@
+@if (prevision) { 
+<div class="min-h-screen bg-blue-100">
+    <h1 class="text-3xl font-bold text-gray-800 p-8">Prévision météo pour {{ prevision.city.name }}</h1>
+    <div class="grid grid-cols-4 gap-4  p-4">
+        @for (city_prevision of filteredPrevision; track filteredPrevision){
+            <div class="bg-blue-300 shadow-md p-4 rounded-lg border-4 border-blue-300 hover:border-blue-500">
+                <img src="http://openweathermap.org/img/w/{{city_prevision.weather[0].icon}}.png" class="w-16 h-16">
+                <p class="text-lg font-semibold">Date: {{ city_prevision.dt_txt }}</p>
+                <p class="text-lg">Température: {{ city_prevision.main.temp }}°C</p>
+                <p class="text-lg">Humidité: {{ city_prevision.main.humidity }}%</p>
+                <p class="text-lg">Vitesse du vent: {{ city_prevision.wind.speed }} km/h</p>
+                <p class="text-lg">Temps: {{ city_prevision.weather[0].main }}</p>
+            </div>
+        }
+    </div>
+    <div class="flex justify-center p-4">
+        <button type="button" (click)="service.goToWeather()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Retourner à la recherche</button>
+    </div>
+</div>
+} @else { 
+        <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+            <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full text-center">
+                <h1 class="text-3xl font-bold text-red-500">Pas de prévision météo trouvée pour cette ville</h1>
+            </div>
+        </div>
+}
