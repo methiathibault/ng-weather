@@ -28,12 +28,14 @@
                     <p class="text-lg">Latitude: {{ city.coord.lat }}</p>
                 </div>
             </div>
-            <button type="button" (click)="service.goToWeather()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Retourner à la recherche</button>
-            <button type="button" (click)="service.addToFavoriteCities($event, city)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter aux favoris</button>
+            <div class="flex justify-between">
+                <button type="button" (click)="service.goToWeather()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Retourner à la recherche</button>
+                <button type="button" (click)="service.addToFavoriteCities($event, city)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Ajouter aux favoris</button>
+            </div>
         </div>
     } @else {
         <div class="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
-            <h1 class="text-3xl font-bold text-red-500">Search for another city,<br> we couldn't find this one</h1>
+            <h1 class="text-3xl font-bold text-red-500">Recherchez une autre ville,<br> nous n'avons pas pu trouver celle-ci</h1>
         </div>
     }
 </div>

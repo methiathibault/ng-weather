@@ -57,13 +57,13 @@ export class WeatherService {
         const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
         for (const favorite of favorites) {
             if (favorite.id === city.id) {
-                alert('City is already in favorites');
+                alert('Ville déjà présentes dans les favoris');
                 return false;
             }
         }
         favorites.push(city);
         localStorage.setItem('favorites', JSON.stringify(favorites));
-        alert('City has been successfully added')
+        alert('Ville ajoutée aux favoris');
         return true
     }
 

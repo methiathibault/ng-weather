@@ -36,7 +36,7 @@ export class WeatherComponent implements OnInit {
     getWeather(city_name: string): void {
         this.service.getWeatherFromCityName(city_name).subscribe((data: API) => {
             if (!data) {
-                this.errorMessage = 'City not found. Please try again';
+                this.errorMessage = 'Ville introuvable, veuillez réessayer';
                 return;
             }
             console.log(data);
@@ -44,7 +44,7 @@ export class WeatherComponent implements OnInit {
             this.errorMessage = undefined;
         }, (error: any) => { 
             console.error(error);
-            this.errorMessage = 'An error occurred. Please try again';
+            this.errorMessage = 'Erreur lors de la récupération des données';
         });
     }
 
