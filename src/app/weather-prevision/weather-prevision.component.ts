@@ -20,7 +20,6 @@ export class WeatherPrevisionComponent implements OnInit {
         const city_name: string | null = this.router.snapshot.paramMap.get('city')
         if (city_name) {
             this.service.getDailyWeatherFromCityName(city_name).subscribe((data: Prevision) => {
-                console.log(data);
                 this.prevision = data;
                 this.filterPrevision();
             }, (error: any) => {

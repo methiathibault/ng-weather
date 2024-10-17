@@ -21,7 +21,6 @@ export class WeatherDetailComponent implements OnInit {
         const city_name: string | null = this.router.snapshot.paramMap.get('city')
         if (city_name) {
             this.service.getWeatherFromCityName(city_name).subscribe((data: API) => {
-                console.log(data);
                 this.city = data;
             }, (error: any) => 
                 { console.error(error); });

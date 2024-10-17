@@ -32,11 +32,7 @@ export class WeatherGroupComponent implements OnInit {
     getWeather(id: number) {
         this.listeData = []
         this.id = id
-        console.log(this.id)
-        console.log(this.max_id)
         for (let i = this.id*5; i < (this.id*5)+5; i++) {
-            
-            console.log(this.cityList[i].name)
            this.getWeatherAPI(this.cityList[i].name)
         }
     }

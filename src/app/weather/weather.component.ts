@@ -31,9 +31,6 @@ export class WeatherComponent implements OnInit {
 
     ngOnInit(): void {
         this.getWeather('Paris');
-        this.service.getDailyWeatherFromCityName('Paris').subscribe((data: API) => {
-            console.log(data);
-        });
     }
 
     getWeather(city_name: string): void {
@@ -42,7 +39,6 @@ export class WeatherComponent implements OnInit {
                 this.errorMessage = 'Ville introuvable, veuillez réessayer';
                 return;
             }
-            console.log(data);
             this.city = data;
             this.errorMessage = undefined;
         }, (error: any) => { 
