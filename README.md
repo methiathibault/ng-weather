@@ -60,19 +60,17 @@ This project requires an API key from OpenWeatherMap to fetch weather data. Foll
 3. Set up the API key as described in the "Setting up the API Key" section.
 
 4. Start the development server:
-
-For the start use to init the ApiKey:
-
+   
+   For the first start use to init ApiKey
     ```sh
-    npm start
+    npm install
     ```
 
-After you can use :
-
+    After you can use :
     ```sh
     ng serve
     ```
 
-5. Open your browser and navigate to `http://localhost:4200/`.
+6. Open your browser and navigate to `http://localhost:4200/`.
 
-6. Use the application to search for weather information by city.
+7. Use the application to search for weather information by city.
